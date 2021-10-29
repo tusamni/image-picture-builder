@@ -9,11 +9,21 @@ let output = './output/'
 let sizes = [2000];
 let formats = ['jpeg', 'webp', 'avif'];
 
+// check for input and output folders
+if (!fs.existsSync(input)) {
+    fs.mkdirSync(input);
+}
+if (!fs.existsSync(output)) {
+    fs.mkdirSync(output);
+}
+
+// read the files in the input directory
 fs.readdir(input, function (err, files) {
     if (err) {
         console.log("There was an error reading files from the input folder");
     }
 
+    // foe each of the files
     files.forEach(async function (file) {
         let extension = path.extname(file); // extension of the image file
         let baseFilename = path.basename(file, extension); // filename of the image minus the extension
@@ -36,7 +46,17 @@ fs.readdir(input, function (err, files) {
         metadata = Object.assign({ "width": width, "height": height }, metadata)
         let json = JSON.stringify(metadata);
         fs.writeFileSync(`${outputFile}.json`, json);
+
+        sizes.map(function (size) {
+            formats.map(function (format) {
+                sharp(inputFile)
+                    .toFormat(format)
+                    .resize(size, size, { fit: "inside" })
+                    .toFile(`${outputFile}-w${size}.${format}`)
+                    .then(info => { console.log(info) })
+                    .catch(err => { console.log(error) })
+            })
+        })
     });
-    //getMetaData(file, outputPath);
     //optimizeImage(file, outputPath);
 });
