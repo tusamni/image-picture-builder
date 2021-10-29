@@ -22,6 +22,9 @@ fs.readdir(input, function (err, files) {
     if (err) {
         console.log("There was an error reading files from the input folder");
     }
+    const inputCount = fs.readdirSync(input).length;
+    const totalCount = (sizes.length * formats.length) * inputCount;
+    let currentCount = 0;
 
     // foe each of the files
     files.forEach(async function (file) {
@@ -53,10 +56,12 @@ fs.readdir(input, function (err, files) {
                     .toFormat(format)
                     .resize(size, size, { fit: "inside" })
                     .toFile(`${outputFile}-w${size}.${format}`)
-                    .then(info => { console.log(info) })
-                    .catch(err => { console.log(error) })
+                    .then(info => {
+                        currentCount++;
+                        console.log(`Successfully created ${currentCount} of ${totalCount}: ${outputFile}-w${size}.${format}`)
+                    })
+                    .catch(err => { console.log(err) })
             })
         })
     });
-    //optimizeImage(file, outputPath);
 });
