@@ -1,5 +1,5 @@
 # sharp
-A quick and dirty tool to take a folder full of images (./input), resize them, reformat them using Sharp and then write a .json file with EXIF and ITPC data.
+A quick and dirty tool to take a folder full of images (./input), resize them and reformat them using Sharp.
 
 To run the tool, place your images in the `input` folder, then simply run:
 
