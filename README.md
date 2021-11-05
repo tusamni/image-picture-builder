@@ -1,4 +1,5 @@
-# sharp
+# Sharp Image Resize and Reformat
+
 A quick and dirty tool to take a folder full of images (./input), resize them and reformat them using Sharp.
 
 To run the tool, place your images in the `input` folder, then simply run:
