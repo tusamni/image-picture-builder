@@ -1,4 +1,4 @@
-# Sharp Image Resize and Reformat
+# Image Resize and Reformat
 
 I needed a tool to locally build various resized and reformatted images for use in `<source>` tags. This is a quick and dirty tool to take a folder full of images (./input), resize them and reformat them into an output (./output) folder using Sharp.
 
