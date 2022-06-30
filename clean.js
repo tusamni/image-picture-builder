@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const directories = ['./input', './output'];
+const directories = ['./_input', './_output'];
 
 directories.forEach(cleanFolder);
 
